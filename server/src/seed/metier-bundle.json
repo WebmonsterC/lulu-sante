@@ -1,0 +1,57 @@
+{
+  "agents": [
+    { "id": "AG01", "matricule": "18452", "nom": "Martin", "prenom": "Pierre", "poleId": "CHUMNEUR" },
+    { "id": "AG02", "matricule": "19203", "nom": "Dupont", "prenom": "Alice", "poleId": "CHUMFMET" },
+    { "id": "AG03", "matricule": "17891", "nom": "Leroy", "prenom": "Sophie", "poleId": "CHUMGERI" },
+    { "id": "AG04", "matricule": "20114", "nom": "Bernard", "prenom": "Luc", "poleId": "CHUMIMGM" },
+    { "id": "AG05", "matricule": "16507", "nom": "Petit", "prenom": "Camille", "poleId": "CHUMBIOL" }
+  ],
+  "dossiers": [
+    { "id": "DOS-2026-0142", "agentId": "AG01", "poleId": "CHUMNEUR", "typeAbsence": "CLML", "typeLabel": "Longue maladie (CLML)", "statut": "actif", "complet": false, "dureeJours": 214, "dateReception": "2026-01-15", "dateCreation": "2026-01-17" },
+    { "id": "DOS-2026-0088", "agentId": "AG02", "poleId": "CHUMFMET", "typeAbsence": "COMO", "typeLabel": "Maladie ordinaire (COMO)", "statut": "actif", "complet": true, "dureeJours": 12, "dateReception": "2026-05-18", "dateCreation": "2026-05-18" },
+    { "id": "DOS-2025-0891", "agentId": "AG03", "poleId": "CHUMGERI", "typeAbsence": "CLML", "typeLabel": "Longue maladie (CLML)", "statut": "actif", "complet": false, "dureeJours": 214, "dateReception": "2025-10-28", "dateCreation": "2025-11-02" },
+    { "id": "DOS-2025-0440", "agentId": "AG04", "poleId": "CHUMIMGM", "typeAbsence": "CLD", "typeLabel": "Longue durée (CLD)", "statut": "cloture", "complet": true, "dureeJours": 420, "dateReception": "2024-08-01", "dateCreation": "2024-08-05" },
+    { "id": "DOS-2026-0101", "agentId": "AG05", "poleId": "CHUMBIOL", "typeAbsence": "CITI", "typeLabel": "CITIS", "statut": "actif", "complet": false, "dureeJours": 95, "dateReception": "2026-03-01", "dateCreation": "2026-03-03" },
+    { "id": "DOS-2025-1200", "agentId": "AG02", "poleId": "CHUMFMET", "typeAbsence": "COMO", "typeLabel": "Maladie ordinaire (COMO)", "statut": "cloture", "complet": true, "dureeJours": 21, "dateReception": "2025-11-10", "dateCreation": "2025-11-10" }
+  ],
+  "alertes": [
+    { "id": "AL1", "type": "Attente > 30 j", "dossierId": "DOS-2026-0142", "agent": "Martin P.", "depuis": "38 j", "tone": "warning" },
+    { "id": "AL2", "type": "Arrêt > 180 j", "dossierId": "DOS-2025-0891", "agent": "Leroy S.", "depuis": "214 j", "tone": "warning" },
+    { "id": "AL3", "type": "Visite MT en retard", "dossierId": "DOS-2026-0088", "agent": "Dupont A.", "depuis": "32 j", "tone": "error" }
+  ],
+  "arrets": [
+    { "id": "AR1", "dossierId": "DOS-2026-0142", "dateDebut": "2026-01-15", "dateFin": "2026-03-20", "typeAbsence": "CLML", "joursOuvrables": 48 },
+    { "id": "AR2", "dossierId": "DOS-2026-0142", "dateDebut": "2026-03-21", "dateFin": null, "typeAbsence": "CLML", "joursOuvrables": 52 }
+  ],
+  "saisines_cm": [
+    { "id": "CM1", "dossierId": "DOS-2026-0142", "dateSaisine": "2026-02-02", "dateAvis": "2026-02-28", "resultat": "FAVR", "resultatLabel": "Favorable" },
+    { "id": "CM2", "dossierId": "DOS-2026-0142", "dateSaisine": "2026-04-15", "dateAvis": null, "resultat": null, "resultatLabel": "En attente" }
+  ],
+  "visites_mt": [
+    { "id": "MT1", "dossierId": "DOS-2026-0142", "dateVisite": "2026-03-10", "typeAvis": "Inaptitude au poste de travail", "typeAvisCode": "INAPOP" },
+    { "id": "MT2", "dossierId": "DOS-2026-0142", "dateVisite": "2026-05-22", "typeAvis": "Aptitude", "typeAvisCode": "APTITU" }
+  ],
+  "parcours_ppr": [
+    { "id": "PPR1", "dossierId": "DOS-2026-0142", "dateEntree": "2026-03-12", "dateSortie": null, "dateAffectation": null, "posteAffectation": null, "enCours": true },
+    { "id": "PPR2", "dossierId": "DOS-2026-0142", "dateEntree": "2025-09-01", "dateSortie": "2026-01-20", "dateAffectation": "2026-01-25", "posteAffectation": "Accueil FMET — permanence", "enCours": false }
+  ],
+  "chronologie": {
+    "DOS-2026-0142": [
+      "15/01/2026 — Réception arrêt",
+      "17/01/2026 — Ouverture dossier",
+      "02/02/2026 — Saisine CM",
+      "28/02/2026 — Avis favorable",
+      "10/03/2026 — Visite MT inaptitude poste",
+      "12/03/2026 — Entrée parcours PPR"
+    ]
+  },
+  "kpi_direction": [
+    { "kpi": "Taux absentéisme global", "valeur": "4,2 %", "objectif": "↓ Diminuer", "n1": "4,8 %", "evolution": "↓ 0,6" },
+    { "kpi": "Agents arrêt > 180 j", "valeur": "63", "objectif": "↓ Diminuer", "n1": "71", "evolution": "↓ 8" },
+    { "kpi": "Délai traitement dossiers", "valeur": "12 j", "objectif": "↓ Diminuer", "n1": "14 j", "evolution": "↓ 2 j" },
+    { "kpi": "Taux retour emploi", "valeur": "68 %", "objectif": "↑ Augmenter", "n1": "64 %", "evolution": "↑ 4 pt" },
+    { "kpi": "Reprise durable 12 m", "valeur": "41 %", "objectif": "↑ Augmenter", "n1": "38 %", "evolution": "↑ 3 pt" },
+    { "kpi": "Reclassement réussi", "valeur": "60 %", "objectif": "↑ Augmenter", "n1": "50 %", "evolution": "↑ 10 pt" },
+    { "kpi": "Dossiers attente > 30 j", "valeur": "14", "objectif": "↓ Diminuer", "n1": "19", "evolution": "↓ 5" }
+  ]
+}

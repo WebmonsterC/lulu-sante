@@ -1,0 +1,81 @@
+{
+  "name": "lulu-sante-desktop",
+  "private": true,
+  "version": "0.2.0",
+  "description": "Lulu Santé — application de bureau (macOS / Windows)",
+  "author": "CHUM",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "node scripts/render-icon.mjs && electron-builder --win nsis",
+    "build:mac": "node scripts/render-icon.mjs && electron-builder --mac dmg",
+    "build:windows": "npm run build:win",
+    "render-icon": "node scripts/render-icon.mjs"
+  },
+  "build": {
+    "appId": "fr.chum.lulu-sante",
+    "productName": "Lulu Santé",
+    "copyright": "CHUM",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.cjs",
+      "package.json",
+      "build/icon.png"
+    ],
+    "extraResources": [
+      {
+        "from": "../server/src",
+        "to": "server/src"
+      },
+      {
+        "from": "../server/package.json",
+        "to": "server/package.json"
+      },
+      {
+        "from": "../server/node_modules",
+        "to": "server/node_modules"
+      },
+      {
+        "from": "../frontend/dist",
+        "to": "frontend/dist"
+      },
+      {
+        "from": "build/icon.png",
+        "to": "build/icon.png"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.business",
+      "target": [
+        "dmg"
+      ],
+      "icon": "build/icon.png",
+      "artifactName": "lulu-sante-${version}-mac.${ext}",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.png",
+      "executableName": "lulu-sante",
+      "artifactName": "lulu-sante-setup-${version}.${ext}"
+    },
+    "dmg": {
+      "title": "Lulu Santé ${version}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "Lulu Santé"
+    }
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8",
+    "sharp": "^0.34.5"
+  }
+}

@@ -1,0 +1,32 @@
+# Dépendances
+node_modules/
+
+# Builds
+frontend/dist/
+electron/dist/
+
+# Icône générée (source : electron/build/icon.svg)
+electron/build/icon.png
+
+# Données locales SQLite
+data/*.sqlite
+data/*.sqlite-*
+
+# Secrets / env
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Electron / natif
+*.7z

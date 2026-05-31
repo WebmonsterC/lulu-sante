@@ -1,0 +1,61 @@
+# Build macOS (.dmg) sur un Mac virtuel GitHub — sans Mac physique.
+#
+# Déclencheurs :
+#   • workflow_dispatch — test manuel (onglet Actions → Run workflow)
+#   • release published — attache le .dmg à une Release GitHub
+#
+# Récupérer le .dmg :
+#   • Release : onglet Releases → fichier lulu-sante-*-mac.dmg
+#   • Test manuel : Actions → run → Artifacts → lulu-sante-macos-dmg
+
+name: Build macOS
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build-dmg:
+    name: DMG (macos-latest)
+    runs-on: macos-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm run install:all
+
+      - name: Build .dmg
+        run: npm run package:mac
+        env:
+          CI: true
+
+      - name: List build output
+        run: ls -la electron/dist/
+
+      - name: Upload artifact (tous les déclencheurs)
+        uses: actions/upload-artifact@v4
+        with:
+          name: lulu-sante-macos-dmg
+          path: electron/dist/*.dmg
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Attach to GitHub Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: electron/dist/*.dmg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

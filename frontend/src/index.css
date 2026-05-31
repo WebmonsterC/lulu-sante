@@ -1,0 +1,905 @@
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme) prefix(tw);
+@import "tailwindcss/utilities.css" layer(utilities) prefix(tw);
+
+@theme {
+  --color-fr-blue: var(--blue-france-sun-113-625);
+  --color-fr-blue-hover: var(--blue-france-sun-113-625-hover);
+  --color-fr-red: var(--red-marianne-425-625);
+  --color-fr-green: var(--green-emeraude-main-632);
+  --color-fr-bg: var(--background-default-grey);
+  --color-fr-bg-alt: var(--background-alt-grey);
+  --color-fr-text: var(--text-default-grey);
+  --color-fr-text-muted: var(--text-mention-grey);
+}
+
+/* Évite le défilement horizontal sur mobile (composants DSFR larges) */
+html {
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: clip;
+  background-color: var(--background-default-grey);
+}
+
+/* Sans logo Marianne — logo applicatif via operatorLogo */
+.lulu-header .fr-logo {
+  display: none !important;
+}
+
+.lulu-header .fr-header__operator img {
+  width: 3rem;
+  height: 3rem;
+  max-width: none;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.lulu-header .fr-header__brand {
+  align-items: flex-start;
+}
+
+.lulu-header__app-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.lulu-header__brand-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lulu-header-user-menu__trigger {
+  max-width: 14rem;
+  text-align: left;
+}
+
+.lulu-header-user-menu__label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.05rem;
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+.lulu-header-user-menu__name {
+  font-weight: 700;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lulu-header-user-menu__role {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-mention-grey);
+}
+
+@media (max-width: 47.99rem) {
+  .lulu-header-user-menu__name {
+    max-width: 8rem;
+  }
+}
+
+.lulu-main {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 75rem) {
+  .lulu-main {
+    padding-inline: 2rem;
+  }
+}
+
+.lulu-page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 48rem) {
+  .lulu-page-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+}
+
+.lulu-page-header__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.lulu-page-header__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.lulu-page-header__actions--stack .fr-btns-group {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.lulu-filters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem 1rem;
+  flex-shrink: 0;
+}
+
+.lulu-filters .fr-select-group {
+  min-width: 10rem;
+  margin-bottom: 0;
+}
+
+.lulu-filters__action {
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+  padding-bottom: 0.125rem;
+}
+
+.lulu-export-menu {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.lulu-export-menu__trigger-icon {
+  margin-right: 0.35rem;
+  vertical-align: -0.15em;
+}
+
+.lulu-export-menu__panel {
+  min-width: 16.5rem;
+  padding: 0.75rem;
+  background: var(--background-default-grey);
+  border: 1px solid var(--border-default-grey);
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 12%);
+}
+
+.lulu-export-menu__panel--floating {
+  position: fixed;
+  z-index: 1200;
+}
+
+.lulu-export-menu__scope {
+  margin: 0 0 0.15rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-title-grey);
+}
+
+.lulu-export-menu__context {
+  margin: 0 0 0.65rem;
+  font-size: 0.75rem;
+  color: var(--text-mention-grey);
+}
+
+.lulu-export-menu__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lulu-export-menu__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.55rem 0.45rem;
+  border: none;
+  border-radius: 0.2rem;
+  background: transparent;
+  color: var(--text-default-grey);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lulu-export-menu__item:hover,
+.lulu-export-menu__item:focus-visible {
+  background: var(--background-contrast-grey);
+  outline: none;
+}
+
+.lulu-export-menu__item > span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.lulu-export-menu__hint {
+  font-size: 0.75rem;
+  color: var(--text-mention-grey);
+}
+
+.lulu-filters__action .fr-btn {
+  white-space: nowrap;
+}
+
+.lulu-filters .fr-select {
+  max-width: 100%;
+}
+
+.lulu-login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.lulu-login__main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.lulu-login__grid {
+  display: grid;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 56rem;
+  align-items: start;
+}
+
+@media (min-width: 62rem) {
+  .lulu-login__grid {
+    grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.lulu-login-network {
+  height: fit-content;
+}
+
+.lulu-login-network__list {
+  display: grid;
+  gap: 1rem;
+}
+
+.lulu-login-network__row {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.lulu-login-network__row dt {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-title-grey);
+}
+
+.lulu-login-network__row dd {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.lulu-login-network__row code {
+  word-break: break-all;
+}
+
+.lulu-login-network__iface {
+  display: block;
+}
+
+.lulu-kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .lulu-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 75rem) {
+  .lulu-kpi-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.lulu-tiles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .lulu-tiles-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.lulu-tiles-grid .fr-tile {
+  min-width: 0;
+}
+
+.lulu-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem 1.25rem;
+}
+
+.lulu-filter-bar .fr-input-group,
+.lulu-filter-bar .fr-select-group {
+  margin-bottom: 0;
+}
+
+.lulu-filter-bar__search {
+  flex: 1 1 16rem;
+  min-width: 14rem;
+  max-width: 28rem;
+}
+
+.lulu-filter-bar__field {
+  flex: 0 0 auto;
+  min-width: 10rem;
+}
+
+@media (min-width: 75rem) {
+  .lulu-filter-bar__field {
+    min-width: 11rem;
+  }
+}
+
+.lulu-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .lulu-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.lulu-form-full {
+  grid-column: 1 / -1;
+}
+
+.lulu-fiche-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .lulu-fiche-header {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.lulu-fiche-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 62rem) {
+  .lulu-fiche-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.lulu-fiche-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lulu-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.lulu-admin-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 62rem) {
+  .lulu-admin-grid {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.lulu-admin-sections {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 62rem) {
+  .lulu-admin-sections {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.lulu-admin-section--wide {
+  grid-column: 1 / -1;
+}
+
+.lulu-admin-section__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.lulu-admin-section__body .fr-table {
+  margin-bottom: 0;
+}
+
+.lulu-admin-section__body .fr-input-group {
+  margin-bottom: 0;
+}
+
+.lulu-user-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.35rem;
+  min-width: 12rem;
+}
+
+.lulu-user-actions .fr-btn {
+  white-space: nowrap;
+}
+
+.lulu-btn-icon {
+  vertical-align: -0.15em;
+  margin-right: 0.25rem;
+}
+
+.lulu-admin-form {
+  max-width: 40rem;
+}
+
+.lulu-password-generator {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-default-grey);
+  border-radius: 0.25rem;
+  background: var(--background-alt-blue-france);
+}
+
+.lulu-export-menu__item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.lulu-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lulu-table-scroll table {
+  min-width: 36rem;
+}
+
+.lulu-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lulu-modal-actions__spacer {
+  flex: 1;
+}
+
+.lulu-tile-btn {
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+
+.lulu-tabs .fr-tabs__tab {
+  white-space: nowrap;
+}
+
+/* Champ date avec calendrier en français */
+.lulu-date-input {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+.lulu-date-input .fr-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.lulu-date-input__btn {
+  flex-shrink: 0;
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  padding-inline: 0.625rem;
+  color: var(--text-action-high-blue-france);
+}
+
+.lulu-date-input__btn:hover {
+  color: var(--text-action-high-blue-france-hover);
+}
+
+/* Infobulles métier (DSFR fr-tooltip + Phosphor duotone) */
+.lulu-term-label__row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.lulu-term-label__row--header {
+  white-space: nowrap;
+}
+
+.lulu-term-tooltip {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.lulu-term-tooltip__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.125rem;
+  border: none;
+  background: transparent;
+  color: var(--text-action-high-blue-france);
+  cursor: help;
+  border-radius: 0.125rem;
+  line-height: 0;
+}
+
+.lulu-term-tooltip__btn:hover,
+.lulu-term-tooltip__btn:focus-visible {
+  color: var(--text-action-high-blue-france-hover);
+  outline: 2px solid var(--border-plain-blue-france);
+  outline-offset: 2px;
+}
+
+.lulu-term-tooltip .fr-tooltip {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1100;
+  min-width: 14rem;
+  max-width: min(22rem, 90vw);
+  width: max-content;
+  pointer-events: none;
+}
+
+.lulu-term-tooltip--top .fr-tooltip {
+  bottom: calc(100% + 0.35rem);
+}
+
+.lulu-term-tooltip--bottom .fr-tooltip {
+  top: calc(100% + 0.35rem);
+}
+
+.lulu-term-tooltip__panel--hidden {
+  display: none !important;
+}
+
+/* Barre de recherche DSFR + Phosphor */
+.lulu-search-bar__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-inverted-blue-france);
+}
+
+.lulu-filter-bar .fr-search-bar {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+.lulu-filter-bar .fr-search-bar .fr-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.lulu-date-input__popover {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  z-index: 1000;
+  background-color: var(--background-default-grey);
+  border: 1px solid var(--border-default-grey);
+  box-shadow: var(--raised-shadow);
+  padding: 0.75rem;
+}
+
+.lulu-date-input__popover .rdp-root {
+  --rdp-accent-color: var(--blue-france-sun-113-625);
+  --rdp-accent-background-color: var(--blue-france-925-125);
+  --rdp-day-height: 2.25rem;
+  --rdp-day-width: 2.25rem;
+  font-family: Marianne, arial, sans-serif;
+}
+
+.lulu-indicateurs__section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+}
+
+.lulu-indicateurs__charts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 62rem) {
+  .lulu-indicateurs__charts {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.lulu-chart {
+  background: var(--background-default-grey);
+  border: 1px solid var(--border-default-grey);
+  border-radius: 0.25rem;
+  padding: 1rem;
+}
+
+.lulu-chart .recharts-default-legend {
+  font-family: Marianne, arial, sans-serif;
+  font-size: 0.875rem;
+}
+
+.lulu-summary-card--clickable {
+  padding: 0 !important;
+}
+
+.lulu-summary-card__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.lulu-summary-card__btn:hover,
+.lulu-summary-card__btn:focus-visible {
+  background: var(--background-alt-blue-france);
+  outline: 2px solid var(--border-plain-blue-france);
+  outline-offset: -2px;
+}
+
+.lulu-drilldown__header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .lulu-drilldown__header {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.lulu-drilldown__close {
+  flex-shrink: 0;
+}
+
+.lulu-callout-icon {
+  vertical-align: middle;
+  margin-right: 0.35rem;
+}
+
+.lulu-indicateurs__nav-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 48rem) {
+  .lulu-indicateurs__nav-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 75rem) {
+  .lulu-indicateurs__nav-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.lulu-indicateurs__nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.125rem;
+  min-height: 4.25rem;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--border-default-grey);
+  border-radius: 0.25rem;
+  background-color: var(--background-default-grey);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.lulu-indicateurs__nav-item:hover {
+  background-color: var(--background-alt-blue-france);
+  border-color: var(--border-plain-blue-france);
+}
+
+.lulu-indicateurs__nav-item--selected {
+  background-color: var(--background-action-low-blue-france);
+  border-color: var(--border-plain-blue-france);
+  box-shadow: inset 0.25rem 0 0 0 var(--border-plain-blue-france);
+}
+
+.lulu-indicateurs__nav-item--kpi {
+  border-style: dashed;
+  background-color: var(--background-alt-grey);
+}
+
+.lulu-indicateurs__nav-item--kpi.lulu-indicateurs__nav-item--selected {
+  border-style: solid;
+  background-color: var(--background-action-low-blue-france);
+}
+
+.lulu-kpi-table .fr-table {
+  margin-bottom: 0;
+}
+
+.lulu-kpi-table .fr-table th,
+.lulu-kpi-table .fr-table td {
+  vertical-align: middle;
+}
+
+.lulu-kpi-evolution {
+  font-weight: 700;
+}
+
+.lulu-kpi-evolution--up {
+  color: var(--text-default-success);
+}
+
+.lulu-kpi-evolution--down {
+  color: var(--text-default-info);
+}
+
+.lulu-export-scopes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 62rem) {
+  .lulu-export-scopes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.lulu-export-scope__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+}
+
+.lulu-export-scope__intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.lulu-export-scope__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.25rem;
+  background: var(--background-action-low-blue-france);
+  color: var(--text-action-high-blue-france);
+}
+
+.lulu-export-scope__context strong {
+  font-weight: 700;
+  color: var(--text-title-grey);
+}
+
+.lulu-exports {
+  padding-bottom: 2rem;
+}
+
+.lulu-indicateurs__nav-number {
+  font-size: 0.75rem;
+  line-height: 1.25;
+  color: var(--text-mention-grey);
+}
+
+.lulu-indicateurs__nav-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.lulu-indicateurs__nav-title--kpi {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.lulu-indicateurs__nav-hint {
+  font-size: 0.6875rem;
+  color: var(--text-mention-grey);
+  margin-top: auto;
+}
+
+.fr-tabs {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
