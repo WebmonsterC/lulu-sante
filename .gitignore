@@ -27,6 +27,8 @@ Thumbs.db
 .idea/
 .vscode/*
 !.vscode/extensions.json
+__pycache__/
+*.pyc
 
 # Electron / natif
 *.7z
