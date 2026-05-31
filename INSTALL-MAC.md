@@ -51,6 +51,24 @@ Ce guide s’adresse à un référent APRS qui reçoit le **dossier source** du 
 7. **Premier lancement :** clic droit sur l’app → **Ouvrir** → **Ouvrir**  
    (normal tant que l’app n’est pas signée Apple Developer)
 
+### Si « Impossible d’ouvrir le programme »
+
+1. **Retirer la quarantaine** (fichier téléchargé depuis Internet) — Terminal :
+
+```bash
+xattr -cr "/Applications/Lulu Santé.app"
+```
+
+2. **Relancer** : clic droit → **Ouvrir** (pas double-clic la première fois)
+
+3. **Diagnostic** (si ça échoue encore) — copier le message affiché :
+
+```bash
+"/Applications/Lulu Santé.app/Contents/MacOS/Lulu Santé"
+```
+
+4. Vérifier **macOS 13+** et, sur Mac Intel ancien, utiliser un `.dmg` **universal** (build récent du dépôt).
+
 ---
 
 ## Si macOS bloque le script

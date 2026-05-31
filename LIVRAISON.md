@@ -105,7 +105,8 @@ Le dépôt inclut `.github/workflows/build-mac.yml` : GitHub exécute le build s
 3. Le workflow se lance automatiquement et **attache le `.dmg`** à la release.
 4. Distribuer le fichier `lulu-sante-0.2.0-mac.dmg` aux utilisateurs.
 
-> L'app n'est pas signée Apple Developer : premier lancement → clic droit → **Ouvrir**.
+> L'app n'est pas signée Apple Developer : premier lancement → clic droit → **Ouvrir**.  
+> Si macOS affiche « Impossible d'ouvrir le programme » : `xattr -cr "/Applications/Lulu Santé.app"` puis clic droit → Ouvrir.
 
 Voir aussi `INSTALL-MAC.md` pour l'utilisateur final et `scripts/mac/` pour un build local manuel.
 

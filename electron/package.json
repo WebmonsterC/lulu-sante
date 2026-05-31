@@ -49,12 +49,19 @@
     "mac": {
       "category": "public.app-category.business",
       "target": [
-        "dmg"
+        {
+          "target": "dmg",
+          "arch": ["universal"]
+        }
       ],
       "icon": "build/icon.png",
       "artifactName": "lulu-sante-${version}-mac.${ext}",
-      "hardenedRuntime": true,
-      "gatekeeperAssess": false
+      "identity": null,
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "extendInfo": {
+        "LSMinimumSystemVersion": "13.0"
+      }
     },
     "win": {
       "target": [
